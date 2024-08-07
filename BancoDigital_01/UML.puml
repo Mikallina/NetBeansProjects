@@ -1,0 +1,61 @@
+@startuml
+class bancodigital_01.model.Validador {
++ boolean validarCPF(String)
++ boolean validarTelefone(String)
+}
+class bancodigital_01.model.ContaPoupanca {
++ void imprimirExtrato()
+}
+interface bancodigital_01.model.IConta {
+~ void sacar(double)
+~ void depositar(double)
+~ void transferir(double,ContaCliente)
+~ void imprimirExtrato()
+}
+class bancodigital_01.model.Main {
++ {static} void main(String[])
+}
+class bancodigital_01.model.CadastroCliente {
+- {static} List<CadastroCliente> clientesCadastrados
+- String nome
+- String cpf
+- String endereco
+- String telefone
+- int senha
++ int getSenha()
++ void setSenha(int)
++ String getNome()
++ void setNome(String)
++ String getCpf()
++ void setCpf(String)
++ String getEndereco()
++ void setEndereco(String)
++ String getTelefone()
++ void setTelefone(String)
++ {static} List<CadastroCliente> getClientesCadastrados()
++ {static} void adicionarCliente(CadastroCliente)
+}
+class bancodigital_01.model.ContaCliente {
+- {static} int AGENCIA_PADRAO
+- {static} int SEQUENCIAL
+# int agencia
+# int numero
+# double saldo
+- CadastroCliente dadosCliente
++ void ContaCliente()
++ int getAgencia()
++ int getNumero()
++ double getSaldo()
++ void sacar(double)
++ void depositar(double)
++ void transferir(double,ContaCliente)
+# void imprimirInfosConta()
+}
+class bancodigital_01.model.ContaCorrente {
++ void imprimirExtrato()
+}
+
+
+bancodigital_01.model.ContaCliente <|-- bancodigital_01.model.ContaPoupanca
+bancodigital_01.model.ContaCliente <|-- bancodigital_01.model.ContaCorrente
+@enduml

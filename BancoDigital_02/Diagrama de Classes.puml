@@ -1,0 +1,130 @@
+@startuml
+class telas.Main {
+- JFrame telaMain
++ {static} void main(String[])
+- void initialize()
++ void setVisible(boolean)
+}
+interface model.IConta {
+~ void sacar(double)
+~ void depositar(double)
+~ void transferir(double,ContaCliente)
+~ void imprimirExtrato()
+}
+class model.ContaCorrente {
++ void imprimirExtrato()
+}
+class telas.administrador.OperacoesAdm {
+- JFrame telaOperacoesAdm
++ {static} void main(String[])
+- void initialize()
++ void setVisible(boolean)
+}
+class model.CadastroCliente {
+- {static} List<CadastroCliente> clientesCadastrados
+- String nome
+- String cpf
+- String endereco
+- String telefone
+- int senha
++ int getSenha()
++ void setSenha(int)
++ String getNome()
++ void setNome(String)
++ String getCpf()
++ void setCpf(String)
++ String getEndereco()
++ void setEndereco(String)
++ String getTelefone()
++ void setTelefone(String)
++ {static} List<CadastroCliente> getClientesCadastrados()
++ {static} void adicionarCliente(CadastroCliente)
+}
+class telas.administrador.ConsultarCliente {
+- JFrame consultarCliente
+- JTable table
+- JButton btnEditar
+- JButton btnExcluir
++ {static} void main(String[])
+- void initialize()
+- void carregarClientesNaTabela()
++ void setVisible(boolean)
+}
+class model.ContaCliente {
+- {static} int AGENCIA_PADRAO
+- {static} int SEQUENCIAL
+# int agencia
+# int numero
+# double saldo
+- CadastroCliente dadosCliente
++ void ContaCliente()
++ int getAgencia()
++ int getNumero()
++ double getSaldo()
++ void sacar(double)
++ void depositar(double)
++ void transferir(double,ContaCliente)
+# void imprimirInfosConta()
+}
+class telas.cliente.Extrato {
+- JFrame telaExtrato
+- JTable table
+- DefaultTableModel tableModel
++ {static} void main(String[])
+- void initialize()
++ void adicionarTransacao(String,double,double,double,String)
++ void mostrarExtrato()
+}
+class model.Validador {
++ boolean validarCPF(String)
++ boolean validarTelefone(String)
+}
+class telas.cliente.OperacoesBancarias {
+- JFrame telaOperacoes
+- JTextField textDepositar
+- JTextField textSacar
+- JTextField textTransferir
+- JTextField textCorrente
+- JTextField textPoupanca
+- ContaCliente contaCorrente
+- ContaCliente contaPoupanca
+- {static} CadastroCliente cliente
+- Extrato extrato
++ {static} void main(String[])
+- void initialize()
+- String obterData()
++ void setVisible(boolean)
+}
+class model.ContaPoupanca {
++ void imprimirExtrato()
+}
+class telas.administrador.CadastrarCliente {
+- JFrame telaCliente
+# JTextField textNome
+# JTextField textCpf
+# JTextField textEndereco
+# JTextField textTelefone
+# JPasswordField passwordField
+- Validador validador
++ {static} void main(String[])
+- void initialize()
++ MaskFormatter createFormatter(String)
++ void setVisible(boolean)
+}
+class telas.Login {
+- JFrame telaLogin
+- JButton btnAcessar
+- JPasswordField passwordField
+- boolean cpfFieldEmpty
+- JFormattedTextField txtCpf
++ {static} void main(String[])
+- void initialize()
++ void setVisible(boolean)
++ void loginAsAdmin()
++ MaskFormatter createFormatter(String)
+}
+
+
+model.ContaCliente <|-- model.ContaCorrente
+model.ContaCliente <|-- model.ContaPoupanca
+@enduml
