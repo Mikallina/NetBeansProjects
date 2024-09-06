@@ -108,29 +108,24 @@ public class ConsultarCliente {
             }
         });
 
-         table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                if (!e.getValueIsAdjusting()) {
-                    int selectedRow = table.getSelectedRow();
-                    if (selectedRow != -1) {
-                        String cpf = (String) table.getValueAt(selectedRow, 0);
-                        System.out.println("CPF selecionado: " + cpf);  // Log CPF selecionado
-                        clienteSelecionado = clienteDAO.buscarClientePorCpf(cpf);
-                      
-                        if (clienteSelecionado != null) {
-                            System.out.println("Cliente selecionado: " + clienteSelecionado.getCpf());  // Log cliente selecionado
-                        } else {
-                            System.out.println("Cliente não encontrado para o CPF: " + cpf);
-                        }
-                    } else {
-                        clienteSelecionado = null;
-                    }
-                    
-                }
+         table.getSelectionModel().addListSelectionListener((ListSelectionEvent e) -> {
+             if (!e.getValueIsAdjusting()) {
+                 int selectedRow = table.getSelectedRow();
+                 if (selectedRow != -1) {
+                     String cpf = (String) table.getValueAt(selectedRow, 0);
+                     System.out.println("CPF selecionado: " + cpf);  // Log CPF selecionado
+                     clienteSelecionado = clienteDAO.buscarClientePorCpf(cpf);
+                     
+                     if (clienteSelecionado != null) {
+                         System.out.println("Cliente selecionado: " + clienteSelecionado.getCpf());  // Log cliente selecionado
+                     } else {
+                         System.out.println("Cliente não encontrado para o CPF: " + cpf);
+                     }
+                 } else {
+                     clienteSelecionado = null;
+                 }
                  
-            }
-            
+             }
         });
     }
     
@@ -146,11 +141,6 @@ public class ConsultarCliente {
             });
         }
     }
-
-    private CadastroCliente buscarClientePorCpf(String cpf) {
-        return clienteDAO.buscarClientePorCpf(cpf);
-    }
-
 
     private void excluirCliente(CadastroCliente cliente) {
         int resposta = JOptionPane.showConfirmDialog(null, "Tem certeza de que deseja excluir o cliente?", "Confirmação", JOptionPane.YES_NO_OPTION);
