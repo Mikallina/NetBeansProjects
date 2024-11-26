@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="BancoDigital_01/src"/>
+	<classpathentry kind="src" path="BancoDigital_02/src"/>
+	<classpathentry kind="src" path="BancoDigital_05/src/main/java"/>
+	<classpathentry kind="src" path="Capgemini/src"/>
+	<classpathentry kind="src" path="Cenaflix/src/main/java"/>
+	<classpathentry kind="src" path="CenaflixPoscast/src/main/java"/>
+	<classpathentry kind="src" path="Contratos/src/main/java"/>
+	<classpathentry kind="src" path="EstudosInterfaceDesktop/src"/>
+	<classpathentry kind="src" path="Exercicio_1_22024/src"/>
+	<classpathentry kind="src" path="Exercicio_2_22024/src"/>
+	<classpathentry kind="src" path="Exercicio_3_22024/src"/>
+	<classpathentry kind="src" path="Exercicio_4_22024/src"/>
+	<classpathentry kind="src" path="Podcast/src/main/java"/>
+	<classpathentry kind="src" path="PortalAluno/src"/>
+	<classpathentry kind="src" path="testeOak/src"/>
+	<classpathentry kind="lib" path="BancoDigital_01/dist/BancoDigital_01.jar"/>
+	<classpathentry kind="lib" path="BancoDigital_05/target/BancoDigital_05-1.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1_8_0/jgoodies-forms-1.8.0/jgoodies-forms-1.8.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1_8_0/jgoodies-forms-1.8.0/jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1_8_0/jgoodies-forms-1.8.0/jgoodies-forms-1.8.0-tests.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1_8_0/jgoodies-forms-1.8.0/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="output" path="BancoDigital_01/build/classes"/>
+</classpath>
