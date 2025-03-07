@@ -17,11 +17,11 @@
     <groupId>com.mycompany</groupId>
     <artifactId>cinema</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging> <!-- Definindo que o pacote gerado será WAR -->
+    <packaging>war</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>17</maven.compiler.release> <!-- Certifique-se de estar utilizando a versão correta do JDK -->
+        <maven.compiler.release>17</maven.compiler.release> 
     </properties>
 
     <!-- Dependências do projeto -->
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>3.3.2</version> <!-- Defina a versão mais recente do starter do Thymeleaf -->
+            <version>3.3.2</version> 
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,12 +80,12 @@
     <!-- Configuração de build -->
     <build>
         <plugins>
-            <!-- Plugin do Spring Boot -->
+          
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.mycompany.cinema.Cinema</mainClass> <!-- Substitua pelo nome correto da sua classe principal -->
+                    <mainClass>com.mycompany.cinema.Cinema</mainClass> 
                 </configuration>
             </plugin>
 
