@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en">
+    <head>
+        <title>Adicionar Análise</title>
+        <link rel="stylesheet" href="/css/style.css"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+   <body th:class="${theme}">
+
+        <div class="container">
+            <h1>Detalhes do Filme</h1>
+            <p><strong>ID:</strong> <span th:text="${filme.id}"></span></p>
+            <p><strong>Título:</strong> <span th:text="${filme.titulo}"></span></p>
+            <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}"></span></p>
+            <p><strong>Gênero:</strong> <span th:text="${filme.genero}"></span></p>
+            <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}"></span></p>
+
+            <!-- Formulário para adicionar análise -->
+            <h2>Adicionar Análise</h2>
+           <form th:action="@{/analises/salvar}" method="POST" th:object="${analise}">
+              <!-- Campo oculto para passar o filmeId -->
+              <input type="hidden" name="filmeId" th:value="${filme.id}" />
+
+              <label for="analise">Comentário:</label>
+              <textarea th:field="*{comentario}" required></textarea>
+              <br />
+
+              <label for="nota">Nota:</label>
+              <input type="number" th:field="*{nota}" min="1" max="10" required />
+              <br />
+
+              <button type="submit">Salvar</button>
+          </form>
+            <!-- Exibindo outras análises -->
+            <h2>Comentários e Notas</h2>
+            <ul id="analises-lista">
+                <li th:each="analise : ${analises}">
+                    <p><strong>Nota:</strong> <span th:text="${analise.nota}"></span></p>
+                    <p><strong>Análise:</strong> <span th:text="${analise.comentario}"></span></p>
+                    <button class="edit-analise" th:data-id="${analise.id}">Editar</button>
+                    <button class="delete-analise" th:data-id="${analise.id}">Deletar</button>
+
+                </li>
+            </ul>
+        </div>
+   
+
+<script>
+    $(document).ready(function() {
+        // Deletar análise
+        $('.delete-analise').on('click', function() {
+            const analiseId = $(this).data('id');
+            console.log("ID da análise: ", analiseId);
+            if (!analiseId || isNaN(analiseId)) {
+                alert('ID da análise inválido');
+                return;
+            }
+
+            $.ajax({
+                url: `/analises/deletar/${analiseId}`,
+                type: 'POST',
+                data: { "_method": "DELETE" },
+                success: function(result) {
+                    alert('Análise deletada com sucesso');
+                  
+                    $(`#analise-${analiseId}`).remove(); // Supondo que você tenha `id="analise-{id}"` nos elementos
+                },
+                error: function(err) {
+                    alert('Erro ao deletar análise');
+                    console.error('Erro:', err);
+                }
+            });
+        });
+        
+            $('.edit-analise').on('click', function() {
+             const analiseId = $(this).data('id');
+                if (!analiseId || isNaN(analiseId)) {
+                    alert('ID da análise inválido');
+                    return;
+                }
+                window.location.href = `/analises/editar/${analiseId}`;
+        });
+    });
+</script>
+<script src="/js/theme.js"></script>
+
+    </body>
+</html>

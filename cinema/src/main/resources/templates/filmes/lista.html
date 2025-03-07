@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en">
+<head>
+    <title>Lista de Filmes</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body th:class="${theme}">
+   <header>
+        <button id="toggle-theme">Alternar Tema</button>
+    </header>
+        <h1>Filmes Cadastrados</h1>
+        <ul id="filmes-lista">
+            <li th:each="filme : ${filmes}">
+                <span th:text="${filme.titulo}"></span> - 
+                <button th:onclick="|window.location.href='@{/analises/adicionar(filmeId=${filme.id})}'|">Adicionar Análise</button>
+                <button th:onclick="|window.location.href='@{/filmes/editar/{id}(id=${filme.id})}'|">Editar</button>
+                <button type="button" class="delete-filme" th:data-id="${filme.id}">Deletar</button>
+            </li>
+        </ul>
+
+    <a href="/filmes/novo">Cadastrar Novo Filme</a>
+
+    <script>
+       $(document).ready(function() {
+            function deleteFilme(filmeId) {
+            console.log("ID do filme: ", filmeId);
+                if (confirm('Tem certeza que deseja deletar este filme?')) {
+                    $.ajax({
+                        url: `/filmes/deletar/${filmeId}`,
+                        type: 'DELETE',
+                        success: function(result) {
+                            alert('Filme deletado com sucesso');
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Erro ao deletar filme');
+                            console.error('Erro ao deletar filme:', status, error);
+                        }
+                    });
+                }
+            }
+
+            // Evento de clique no botão de deletar
+            $('.delete-filme').on('click', function() {
+                const filmeId = $(this).data('id');
+                deleteFilme(filmeId); 
+            });
+        });
+
+            // Editar Filme
+            $('.edit-filme').on('click', function() {
+                const filmeId = $(this).data('id');
+                window.location.href = `/filmes/editar/${filmeId}`;
+            });
+
+    </script>
+    <script src="/js/theme.js"></script>
+</body>
+</html>

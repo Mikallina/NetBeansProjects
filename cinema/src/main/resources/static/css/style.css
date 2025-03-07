@@ -1,0 +1,200 @@
+/* Resetando estilos básicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Definindo variáveis para o tema */
+:root {
+    --cor-fundo-claro: #f4f7f6;
+    --cor-texto-claro: #333;
+    --cor-fundo-escuro: #121212;
+    --cor-texto-escuro: #e4e4e4;
+    --cor-botao-claro: #5c6bc0;
+    --cor-botao-escuro: #3f4e97;
+    --cor-fundo-formulario: #fff;
+    --cor-borda-claro: #ddd;
+    --cor-borda-escuro: #555;
+    --cor-fundo-lista-claro: #fff;
+    --cor-fundo-lista-escuro: #1e1e1e;
+    --cor-link-claro: #3f4e97;
+    --cor-link-escuro: #a5b0f6;
+}
+
+/* Estilos para o modo claro (tema padrão) */
+body.claro {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto-claro);
+}
+
+button.claro {
+    background-color: var(--cor-botao-claro);
+    color: white;
+}
+
+button.claro:hover {
+    background-color: var(--cor-botao-escuro);
+}
+
+ul.claro li {
+    background-color: var(--cor-fundo-lista-claro);
+}
+
+a.claro {
+    background-color: var(--cor-link-claro);
+    color: white;
+}
+
+a.claro:hover {
+    background-color: var(--cor-link-escuro);
+}
+
+/* Estilos para o modo escuro */
+body.escuro {
+    background-color: var(--cor-fundo-escuro);
+    color: var(--cor-texto-escuro);
+}
+
+button.escuro {
+    background-color: var(--cor-botao-escuro);
+    color: white;
+}
+
+button.escuro:hover {
+    background-color: var(--cor-botao-claro);
+}
+
+span.escuro {
+    color: var(--cor-texto-escuro); 
+}
+body.escuro span {
+    color: #121212;
+}
+
+ul.escuro li {
+    background-color: var(--cor-fundo-lista-escuro);
+}
+
+a.escuro {
+    background-color: var(--cor-link-escuro);
+    color: white;
+}
+
+a.escuro:hover {
+    background-color: var(--cor-link-claro);
+}
+body.escuro label {
+    color: #121212; 
+}
+
+/* Outros ajustes para garantir que o texto tenha bom contraste */
+body.escuro h1, body.escuro h2, body.escuro p{
+    color: var(--cor-texto-escuro);
+}
+
+/* Estilo do corpo da página */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+    color: inherit;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.6em;
+}
+
+/* Estilo dos formulários */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--cor-fundo-formulario);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    display: block;
+    color: inherit;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid var(--cor-borda-claro);
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+button {
+    background-color: var(--cor-botao-claro);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--cor-botao-escuro);
+}
+
+textarea {
+    min-height: 150px;
+}
+
+/* Estilo das listas e exibição de filmes */
+ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+ul li {
+    background: var(--cor-fundo-lista-claro);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul li a {
+    color: var(--cor-link-claro);
+    text-decoration: none;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+a {
+    display: inline-block;
+    background: var(--cor-link-claro);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+a:hover {
+    background-color: var(--cor-link-escuro);
+}

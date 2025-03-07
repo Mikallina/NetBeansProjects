@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en">
+<head>
+    <title>Cadastrar Filme</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    
+</head>
+<body th:class="${theme}">
+   
+            <div class="container">
+                <h1 th:text="${filme.id == null ? 'Cadastrar Filme' : 'Editar Filme'}"></h1>
+                <form th:action="@{${filme.id != null ? '/filmes/editar/' + filme.id : '/filmes/salvar'}}" th:object="${filme}" method="post">
+
+                    <input type="hidden" name="_method" th:value="${filme.id != null ? 'PUT' : ''}" />
+
+                    <label for="titulo">Título:</label>
+                    <input type="text" th:field="*{titulo}" required />
+                    <br/>
+                    <label for="sinopse">Sinopse:</label>
+                    <input type="text" th:field="*{sinopse}" required />
+                    <br/>
+                    <label for="genero">Gênero:</label>
+                    <input type="text" th:field="*{genero}" required />
+                    <br/>
+                    <label for="anoLancamento">Ano de Lançamento:</label>
+                    <input type="number" th:field="*{anoLancamento}" required />
+                    <br/>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>  
+<script src="/js/theme.js"></script>
+
+</body>
+</html>
