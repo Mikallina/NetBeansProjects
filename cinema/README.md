@@ -66,7 +66,7 @@ O objetivo principal do sistema é fornecer uma aplicação web simples para ger
 
 ### 1. Clone do Repositório:
 - Clone este repositório em seu diretório local
-- git clone https://github.com/mikallina/cinema.git
+- git clone https://github.com/Mikallina/NetBeansProjects/tree/main/cinema
 
 ### 2. Configuração do Banco de Dados:
 - O sistema usa o MySQL. Você precisará de um banco de dados configurado com as credenciais corretas.
