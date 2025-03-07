@@ -39,14 +39,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <h2>Comentários e Notas</h2>
             <ul id="analises-lista">
                 <li th:each="analise : ${analises}">
-                    <p><strong>Nota:</strong> <span th:text="${analise.nota}"></span></p>
-                    <p><strong>Análise:</strong> <span th:text="${analise.comentario}"></span></p>
-                    <button class="edit-analise" th:data-id="${analise.id}">Editar</button>
-                    <button class="delete-analise" th:data-id="${analise.id}">Deletar</button>
-
+                   <div class="analise-item">
+                        <p><strong>Nota:</strong> <span th:text="${analise.nota}"></span></p>
+                        <p><strong>Análise:</strong> <span th:text="${analise.comentario}"></span></p>
+                    </div>
+                    <div class="botoes">
+                        <button class="edit-analise" th:data-id="${analise.id}">Editar</button>
+                        <button class="delete-analise" th:data-id="${analise.id}">Deletar</button>
+                    </div>    
                 </li>
             </ul>
         </div>
+       <div class="botao-container">
+                    <a href="/filmes">Página Inicial</a>
+                </div>
    
 
 <script>

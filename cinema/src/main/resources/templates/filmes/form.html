@@ -3,36 +3,82 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Cadastrar Filme</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body th:class="${theme}">
-   
-            <div class="container">
-                <h1 th:text="${filme.id == null ? 'Cadastrar Filme' : 'Editar Filme'}"></h1>
-                <form th:action="@{${filme.id != null ? '/filmes/editar/' + filme.id : '/filmes/salvar'}}" th:object="${filme}" method="post">
+    <div class="container">
+        <h1 th:text="${filme.id == null ? 'Cadastrar Filme' : 'Editar Filme'}"></h1>
+        
+        <!-- Formulário de Cadastro de Filme -->
+        <form id="filmeForm" th:action="@{${filme.id != null ? '/filmes/editar/' + filme.id : '/filmes/salvar'}}" th:object="${filme}" method="post">
+            <input type="hidden" name="_method" th:value="${filme.id != null ? 'PUT' : ''}" />
 
-                    <input type="hidden" name="_method" th:value="${filme.id != null ? 'PUT' : ''}" />
+            <label for="titulo">Título:</label>
+            <input type="text" th:field="*{titulo}" required/>
+            <br/>
+            <label for="sinopse">Sinopse:</label>
+            <input type="text" th:field="*{sinopse}" required />
+            <br/>
+            <label for="genero">Gênero:</label>
+            <input type="text" th:field="*{genero}" required />
+            <br/>
+            <label for="anoLancamento">Ano de Lançamento:</label>
+            <input type="number" th:field="*{anoLancamento}" required />
+            <br/>
+            <button type="submit">Salvar</button>
+        </form>
+        
+        <!-- Botão para voltar à página inicial -->
+        <div class="botao-container">
+            <a href="/filmes">Página Inicial</a>
+        </div>
 
-                    <label for="titulo">Título:</label>
-                    <input type="text" th:field="*{titulo}" required />
-                    <br/>
-                    <label for="sinopse">Sinopse:</label>
-                    <input type="text" th:field="*{sinopse}" required />
-                    <br/>
-                    <label for="genero">Gênero:</label>
-                    <input type="text" th:field="*{genero}" required />
-                    <br/>
-                    <label for="anoLancamento">Ano de Lançamento:</label>
-                    <input type="number" th:field="*{anoLancamento}" required />
-                    <br/>
-                    <button type="submit">Salvar</button>
-                </form>
-            </div>  
-<script src="/js/theme.js"></script>
 
+    <!-- Script JavaScript -->
+    <script>
+        $(document).ready(function() {
+            // Ouvir o evento de envio do formulário
+            $('#filmeForm').on('submit', function(e) {
+                e.preventDefault(); 
+
+                // Validação do formulário
+                let titulo = $('input[name="titulo"]').val();
+                if (titulo.trim() === '') {
+                    alert('O título do filme não pode ser vazio');
+                    return;  
+                }
+
+                // Usando AJAX para enviar o formulário
+                $.ajax({
+                    url: $(this).attr('action'), 
+                    method: $(this).attr('method'), 
+                    data: $(this).serialize(), 
+                    success: function(response) {
+                    
+                        alert('Filme adicionado com sucesso!');
+            
+                        $('#listaFilmes').load('/filmes #listaFilmes', function() {
+                      
+                        });
+                
+                        window.history.back();  
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Ocorreu um erro ao adicionar o filme. Tente novamente.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script src="/js/theme.js"></script>
 </body>
 </html>

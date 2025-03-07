@@ -16,14 +16,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <h1>Filmes Cadastrados</h1>
         <ul id="filmes-lista">
             <li th:each="filme : ${filmes}">
-                <span th:text="${filme.titulo}"></span> - 
+              <div class="titulo" th:text="${filme.titulo}"></div>
+                <div class="botoes">
                 <button th:onclick="|window.location.href='@{/analises/adicionar(filmeId=${filme.id})}'|">Adicionar Análise</button>
                 <button th:onclick="|window.location.href='@{/filmes/editar/{id}(id=${filme.id})}'|">Editar</button>
                 <button type="button" class="delete-filme" th:data-id="${filme.id}">Deletar</button>
+              </div>
             </li>
         </ul>
-
-    <a href="/filmes/novo">Cadastrar Novo Filme</a>
+        
+        <div class="botao-container">
+         <a href="/filmes/novo">Cadastrar Novo Filme</a>
+        </div>
 
     <script>
        $(document).ready(function() {

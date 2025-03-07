@@ -78,10 +78,10 @@ O objetivo principal do sistema é fornecer uma aplicação web simples para ger
 ### 2. Configuração do Banco de Dados:
 - O sistema usa o MySQL. Você precisará de um banco de dados configurado com as credenciais corretas.
 - No arquivo application.properties, configure as credenciais do seu banco de dados:
--- spring.datasource.url=jdbc:mysql://localhost:3306/cinema
--- spring.datasource.username=root
--- spring.datasource.password=sua_senha
--- spring.jpa.hibernate.ddl-auto=update
+    - spring.datasource.url=jdbc:mysql://localhost:3306/cinema
+    - spring.datasource.username=root
+    - spring.datasource.password=sua_senha
+    - spring.jpa.hibernate.ddl-auto=update
 
 ### 3. Instalar as depedências
 - Certifique-se de que o Maven está instalado em seu sistema.

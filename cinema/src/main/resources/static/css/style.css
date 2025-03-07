@@ -160,18 +160,27 @@ textarea {
 }
 
 /* Estilo das listas e exibição de filmes */
+/* Ajuste da lista de filmes */
 ul {
     list-style-type: none;
     padding-left: 0;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 ul li {
     background: var(--cor-fundo-lista-claro);
     margin: 10px 0;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 15px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 800px;  /* Limita a largura máxima para evitar que a lista ocupe toda a tela */
+    display: flex;
+    justify-content: end;
+    align-items: center;
 }
 
 ul li a {
@@ -183,6 +192,25 @@ ul li a:hover {
     text-decoration: underline;
 }
 
+ul li button {
+    margin-left: 10px;
+    padding: 8px 16px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+ul li .botoes {
+    display: flex;
+    gap: 10px;  /* Adiciona um espaço entre os botões */
+}
+ul li .titulo {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--cor-texto-claro);
+    margin-right: auto; /* Garante que o título fique à esquerda */
+}
+
 a {
     display: inline-block;
     background: var(--cor-link-claro);
@@ -192,9 +220,65 @@ a {
     text-decoration: none;
     margin-top: 20px;
     text-align: center;
-    width: 100%;
+    width: 50%
+    
 }
+.botao-container {
+    display: flex;
+    justify-content: center; /* Centraliza o botão horizontalmente */
+    margin-top: 20px; /* Espaço acima do botão */
+   
+}
+
+/* Estilos para Comentários e Notas */
+#analises-lista {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adiciona um espaçamento entre os itens */
+}
+
+#analises-lista li {
+    background: var(--cor-fundo-lista-claro);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column; /* Faz com que o título e os comentários fiquem empilhados */
+    justify-content: space-between;
+}
+
+#analises-lista li .analise-item {
+    margin-bottom: 20px; /* Espaço entre os comentários e a parte dos botões */
+}
+
+#analises-lista li p {
+    margin-bottom: 10px; /* Adiciona espaçamento entre as linhas de comentários */
+}
+
 
 a:hover {
     background-color: var(--cor-link-escuro);
+}
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .form-container input, .form-container textarea {
+        width: 100%;
+    }
 }
