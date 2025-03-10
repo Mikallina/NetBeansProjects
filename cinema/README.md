@@ -8,16 +8,8 @@ Tecnologias
 
 ## Status do Projeto
 
-> :construction: Projeto em construção :construction:
+> :construction: Projeto Finalizado :construction:
 
-- Projeto concluído parcialmente, com funcionalidades e CRUD's completos.
-- Validações com JavaScript
-    - Validação de Entrada no Formulário de Análise
-    - Validação de Formulário de Filme
-    - Estilização com CSS - Responsividade / Estilização
-    - Mensagens de Sucesso ou Erro
-- Plano de Testes
-- Melhorias no Fluxo de Navegação
 
 ---
 ## Tecnologias

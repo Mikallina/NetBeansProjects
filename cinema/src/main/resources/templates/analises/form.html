@@ -4,95 +4,65 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html lang="en">
-    <head>
-        <title>Adicionar Análise</title>
-        <link rel="stylesheet" href="/css/style.css"/>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    </head>
-   <body th:class="${theme}">
-
-        <div class="container">
-            <h1>Detalhes do Filme</h1>
-            <p><strong>ID:</strong> <span th:text="${filme.id}"></span></p>
-            <p><strong>Título:</strong> <span th:text="${filme.titulo}"></span></p>
-            <p><strong>Sinopse:</strong> <span th:text="${filme.sinopse}"></span></p>
-            <p><strong>Gênero:</strong> <span th:text="${filme.genero}"></span></p>
-            <p><strong>Ano de Lançamento:</strong> <span th:text="${filme.anoLancamento}"></span></p>
-
-            <!-- Formulário para adicionar análise -->
-            <h2>Adicionar Análise</h2>
-           <form th:action="@{/analises/salvar}" method="POST" th:object="${analise}">
-              <!-- Campo oculto para passar o filmeId -->
-              <input type="hidden" name="filmeId" th:value="${filme.id}" />
-
-              <label for="analise">Comentário:</label>
-              <textarea th:field="*{comentario}" required></textarea>
-              <br />
-
-              <label for="nota">Nota:</label>
-              <input type="number" th:field="*{nota}" min="1" max="10" required />
-              <br />
-
-              <button type="submit">Salvar</button>
-          </form>
-            <!-- Exibindo outras análises -->
-            <h2>Comentários e Notas</h2>
-            <ul id="analises-lista">
-                <li th:each="analise : ${analises}">
-                   <div class="analise-item">
-                        <p><strong>Nota:</strong> <span th:text="${analise.nota}"></span></p>
-                        <p><strong>Análise:</strong> <span th:text="${analise.comentario}"></span></p>
-                    </div>
-                    <div class="botoes">
-                        <button class="edit-analise" th:data-id="${analise.id}">Editar</button>
-                        <button class="delete-analise" th:data-id="${analise.id}">Deletar</button>
-                    </div>    
-                </li>
-            </ul>
+<head>
+    <title>Lista de Filmes</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body th:class="${theme}">
+   <header>
+        <button id="toggle-theme">Alternar Tema</button>
+    </header>
+        <h1>Filmes Cadastrados</h1>
+        <ul id="filmes-lista">
+            <li th:each="filme : ${filmes}">
+              <div class="titulo" th:text="${filme.titulo}"></div>
+                <div class="botoes">
+                <button th:onclick="|window.location.href='@{/analises/adicionar(filmeId=${filme.id})}'|">Adicionar Análise</button>
+                <button th:onclick="|window.location.href='@{/filmes/editar/{id}(id=${filme.id})}'|">Editar</button>
+                <button type="button" class="delete-filme" th:data-id="${filme.id}">Deletar</button>
+              </div>
+            </li>
+        </ul>
+        
+        <div class="botao-container">
+         <a href="/filmes/novo">Cadastrar Novo Filme</a>
         </div>
-       <div class="botao-container">
-                    <a href="/filmes">Página Inicial</a>
-                </div>
-   
 
-<script>
-    $(document).ready(function() {
-        // Deletar análise
-        $('.delete-analise').on('click', function() {
-            const analiseId = $(this).data('id');
-            console.log("ID da análise: ", analiseId);
-            if (!analiseId || isNaN(analiseId)) {
-                alert('ID da análise inválido');
-                return;
+    <script>
+       $(document).ready(function() {
+            function deleteFilme(filmeId) {
+            console.log("ID do filme: ", filmeId);
+                if (confirm('Tem certeza que deseja deletar este filme?')) {
+                    $.ajax({
+                        url: `/filmes/deletar/${filmeId}`,
+                        type: 'DELETE',
+                        success: function(result) {
+                            alert('Filme deletado com sucesso');
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            alert('Erro ao deletar filme');
+                            console.error('Erro ao deletar filme:', status, error);
+                        }
+                    });
+                }
             }
 
-            $.ajax({
-                url: `/analises/deletar/${analiseId}`,
-                type: 'POST',
-                data: { "_method": "DELETE" },
-                success: function(result) {
-                    alert('Análise deletada com sucesso');
-                  
-                    $(`#analise-${analiseId}`).remove(); 
-                },
-                error: function(err) {
-                    alert('Erro ao deletar análise');
-                    console.error('Erro:', err);
-                }
+            // Evento de clique no botão de deletar
+            $('.delete-filme').on('click', function() {
+                const filmeId = $(this).data('id');
+                deleteFilme(filmeId); 
             });
         });
-        
-            $('.edit-analise').on('click', function() {
-             const analiseId = $(this).data('id');
-                if (!analiseId || isNaN(analiseId)) {
-                    alert('ID da análise inválido');
-                    return;
-                }
-                window.location.href = `/analises/editar/${analiseId}`;
-        });
-    });
-</script>
-<script src="/js/theme.js"></script>
 
-    </body>
+            // Editar Filme
+            $('.edit-filme').on('click', function() {
+                const filmeId = $(this).data('id');
+                window.location.href = `/filmes/editar/${filmeId}`;
+            });
+
+    </script>
+    <script src="/js/theme.js"></script>
+</body>
 </html>
